@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("movie_cast_consume")
+@RequestMapping("movie-cast-consume")
 @AllArgsConstructor
 public class MovieCastConsume {
     private final MovieCastService movieCastService;

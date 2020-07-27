@@ -18,8 +18,8 @@ public class MovieCastService {
     private final MovieCastRepo movieCastRepo;
     private final MovieCastMapper movieCastMapper;
 
-    public void postMovieCastService(MovieCastDto movieCastDto) {
-        movieCastRepo.save(movieCastMapper.mapToModel(movieCastDto));
+    public void postMovieCastService(List<MovieCastDto> movieCastDto) {
+        movieCastDto.stream().map(movieCastMapper::mapToModel).forEach(movieCast-> movieCastRepo.save(movieCast));
     }
 
     public List<MovieCastDto> getMovieCastByMovieName(String movieName) {

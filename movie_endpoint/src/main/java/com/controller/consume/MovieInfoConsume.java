@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("movie_info_consume")
+@RequestMapping("movie-info-consume")
 @AllArgsConstructor
 public class MovieInfoConsume {
     private final MovieInfoService movieInfoService;
