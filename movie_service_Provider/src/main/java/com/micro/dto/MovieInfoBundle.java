@@ -8,7 +8,6 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class MovieInfoBundle {
     private Integer releaseYear;
     private String director;
