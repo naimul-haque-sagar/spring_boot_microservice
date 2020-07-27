@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.movie_details</groupId>
-	<artifactId>movie_details</artifactId>
+	<artifactId>movie_service_provider</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>movie_details</name>
+	<name>movie_service_provider</name>
 	<description>Demo project for microservice</description>
 
 	<properties>
