@@ -1,6 +1,6 @@
-package com.controller.input;
+package com.micro.controller.input;
 
-import com.dto.MovieCastDto;
+import com.micro.dto.MovieCastDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

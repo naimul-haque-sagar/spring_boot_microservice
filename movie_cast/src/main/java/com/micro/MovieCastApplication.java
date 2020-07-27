@@ -1,4 +1,4 @@
-package com;
+package com.micro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +10,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class MovieRatingsApplication {
+public class MovieCastApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MovieRatingsApplication.class, args);
+		SpringApplication.run(MovieCastApplication.class, args);
 	}
 
 	@Bean
@@ -27,4 +27,5 @@ public class MovieRatingsApplication {
 	public WebClient.Builder getWebClientBuilder(){
 		return WebClient.builder();
 	}
+
 }
