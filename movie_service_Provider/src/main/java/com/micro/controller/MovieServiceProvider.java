@@ -2,6 +2,9 @@ package com.micro.controller;
 
 import com.micro.dto.*;
 import com.micro.mapper.MovieCastMapper;
+import com.micro.service.MovieCast;
+import com.micro.service.MovieInfo;
+import com.micro.service.MovieRatings;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.AllArgsConstructor;
 
@@ -24,33 +27,24 @@ import java.util.stream.Collectors;
 @RequestMapping("movie-service-provider")
 @AllArgsConstructor
 public class MovieServiceProvider {
-    private final WebClient.Builder webClientBuilder;
-    private final RestTemplate restTemplate;
     private final MovieCastMapper movieCastMapper;
+    private final MovieRatings movieRatings;
+    private final MovieCast movieCast;
+    private final MovieInfo movieInfo;
 
-    static String MOVIE_INFO="http://movie-info/movie-info-consume/get/";
-    static String MOVIE_CAST="http://movie-cast/movie-cast-consume/get/";
-    static String MOVIE_RATINGS="http://movie-ratings/movie-ratings-consume/get/";
 
     @GetMapping("/getAllInfo/{movieName}")
-    @HystrixCommand(fallbackMethod = "getFallbackForAllInfo")
     public ResponseEntity<MovieInfoBundle> getAllInfo(@PathVariable String movieName){
-        MovieInfoDto movieInfoDto=restTemplate.getForObject(MOVIE_INFO+"/{movieName}",MovieInfoDto.class,movieName);
+        MovieInfoDto movieInfoDto= movieInfo.getMovieInfoDto(movieName);
 
-        MovieCastDto[] movieCastDto=restTemplate.getForObject(MOVIE_CAST+"/{movieName}",MovieCastDto[].class,movieName);
+        MovieCastDto[] movieCastDto= movieCast.getMovieCastDto(movieName);
         List<MovieCastDto> movieCastDtos=Arrays.asList(movieCastDto);
 
-        MovieRatingsDto movieRatingsDto=restTemplate.getForObject(MOVIE_RATINGS+"/{movieName}",MovieRatingsDto.class,movieName);
+        MovieRatingsDto movieRatingsDto= movieRatings.getMovieRatingsDto(movieName);
 
         return ResponseEntity.status(HttpStatus.OK).
                 body(new MovieInfoBundle(movieInfoDto.getReleaseYear(),movieInfoDto.getDirector(),movieInfoDto.getProducer()
        , movieCastDtos.stream().map(movieCastMapper::mapToDto).collect(Collectors.toList()),movieRatingsDto.getMovieRatings()));
     }
 
-    public ResponseEntity<MovieInfoBundle> getFallbackForAllInfo(@PathVariable String movieName){
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(new MovieInfoBundle(2020,"director x","producer y",
-                        Arrays.asList(new MovieCast_Dto("Fallback",44,"male"),
-                                      new MovieCast_Dto("Fallback1",33,"male")), 4));
-    }
 }
