@@ -2,19 +2,18 @@ Spring Microservice
 
 There are five services listed below
 
- 1.movie cast service
+ 1.movie cast service -tells about the movie cast
 
- 2.movie info service
+ 2.movie info service -tells about the movie info
 
- 3.mvoie ratings service
+ 3.mvoie ratings service -tells about the movie ratings service
 
- 4.movie input service
+ 4.movie endpoint service -it's the endpoints of above three service for storing movie data
 
- 5.movie service provider
+ 5.movie service provider -this is the aggregator service for collecting all info 
 
- 6.eureka service discovery
+ 6.eureka service discovery -discover all the service associated with
 
-Each service talking to each other
-Movie service provider calls first three service and gives output as a bundle movie info
+
 
 
