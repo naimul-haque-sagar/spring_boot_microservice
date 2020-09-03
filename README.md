@@ -13,7 +13,7 @@ There are five services listed below
 
  5.movie service provider -this is the aggregator service for showing all info 
 
- 6.eureka service discovery -discover all the service associated with
+ 6.eureka service discovery -discover all the service associated with it and maintain load balancing ,switch ,circuit breaker ,exception 
 
 
 
